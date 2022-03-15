@@ -1,0 +1,24 @@
+schema-version: 1.0
+
+type: builder
+
+description: |
+
+
+in:
+  version: "1.9.3"
+
+
+provision:
+  - url:
+      from: https://github.com/lz4/lz4/archive/refs/tags/v{% version %}.tar.gz
+      todir: "{% xbeeSrc %}"
+
+build:
+  - shell:
+      cmds:
+        - make
+        - make install DESTDIR={% xbeeOut %}
+      directory: "{% xbeeSrc %}/lz4-{% version %}"
+
+
